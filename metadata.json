@@ -1,0 +1,6 @@
+{
+  "name": "Indian Breed Classification",
+  "description": "AI-powered identification and encyclopedia of indigenous Indian livestock and domestic animal breeds (Cattle, Buffalo, Goat, Sheep, Dog, Horse, Camel, Poultry).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

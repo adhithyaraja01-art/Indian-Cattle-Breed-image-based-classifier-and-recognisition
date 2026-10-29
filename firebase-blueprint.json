@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "userProfile": {
+      "title": "UserProfile",
+      "description": "Student or researcher profile stored in the application.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "collegeName": { "type": "string", "maxLength": 256 },
+        "role": { "type": "string", "enum": ["student", "researcher"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "scanRecord": {
+      "title": "ScanRecord",
+      "description": "Student college project classification scan for an Indian cattle or buffalo breed.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "userEmail": { "type": "string", "maxLength": 256 },
+        "breedName": { "type": "string", "maxLength": 128 },
+        "vernacularName": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "enum": ["Cattle", "Buffalo"] },
+        "scientificName": { "type": "string", "maxLength": 128 },
+        "confidence": { "type": "number" },
+        "stateOfOrigin": { "type": "string", "maxLength": 128 },
+        "homeTract": { "type": "string", "maxLength": 512 },
+        "utility": { "type": "string", "maxLength": 256 },
+        "nbagrCode": { "type": "string", "maxLength": 64 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "userId", "breedName", "category", "confidence", "timestamp"]
+    },
+    "projectObservation": {
+      "title": "ProjectObservation",
+      "description": "Field observation or project note recorded by the student.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "breedName": { "type": "string", "maxLength": 128 },
+        "location": { "type": "string", "maxLength": 256 },
+        "fieldNotes": { "type": "string", "maxLength": 2000 },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "userId", "title", "breedName", "fieldNotes", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "userProfile",
+      "description": "Public and private user account profile documents"
+    },
+    "/scans/{scanId}": {
+      "schema": "scanRecord",
+      "description": "College mini-project cattle and buffalo classification scan records"
+    },
+    "/observations/{observationId}": {
+      "schema": "projectObservation",
+      "description": "Student project journal field observations"
+    }
+  }
+}
